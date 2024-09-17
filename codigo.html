@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #000;
+            margin: 0;
+            color: #fff;
+            transition: background-color 0.5s, color 0.5s;
+        }
+
+        .container {
+            position: relative;
+            width: 600px;
+            height: 600px;
+        }
+
+        /* Buraco negro (planeta grande no centro) */
+        .black-hole {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100px;
+            height: 100px;
+            background-color: #111;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+        }
+
+        /* Planetas médios orbitando o buraco negro */
+        .orbit-medium {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300px;
+            height: 300px;
+            border: 0.5px dashed #ffffff;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 5;
+        }
+
+        .planet-medium {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 40px;
+            height: 40px;
+            background-color: #ece3e2;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            color: #000;
+        }
+
+        /* Animações para os planetas médios */
+        .planet1 {
+            animation: orbitMedium1 10s linear infinite;
+        }
+
+        .planet2 {
+            animation: orbitMedium2 10s linear infinite;
+        }
+
+        .planet3 {
+            animation: orbitMedium3 10s linear infinite;
+        }
+
+        .planet4 {
+            animation: orbitMedium4 10s linear infinite;
+        }
+
+        .planet5 {
+            animation: orbitMedium5 10s linear infinite;
+        }
+
+        /* Luas orbitando os planetas médios */
+        .orbit-small {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 80px;
+            height: 80px;
+            border: 1px dashed #ccc;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .moon-small {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 15px;
+            height: 15px;
+            background-color: #aaa;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            animation: orbitMoon 4s linear infinite;
+            z-index: 6;
+        }
+
+        /* Animação das luas orbitando os planetas médios */
+        @keyframes orbitMoon {
+            0% {
+                transform: rotate(0deg) translateX(40px) rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg) translateX(40px) rotate(-360deg);
+            }
+        }
+
+        /* Animações para os planetas médios */
+        @keyframes orbitMedium1 {
+            0% {
+                transform: rotate(0deg) translateX(150px) rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg) translateX(150px) rotate(-360deg);
+            }
+        }
+
+        @keyframes orbitMedium2 {
+            0% {
+                transform: rotate(72deg) translateX(150px) rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(432deg) translateX(150px) rotate(-360deg);
+            }
+        }
+
+        @keyframes orbitMedium3 {
+            0% {
+                transform: rotate(144deg) translateX(150px) rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(504deg) translateX(150px) rotate(-360deg);
+            }
+        }
+
+        @keyframes orbitMedium4 {
+            0% {
+                transform: rotate(216deg) translateX(150px) rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(576deg) translateX(150px) rotate(-360deg);
+            }
+        }
+
+        @keyframes orbitMedium5 {
+            0% {
+                transform: rotate(288deg) translateX(150px) rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(648deg) translateX(150px) rotate(-360deg);
+            }
+        }
+
+        /* Satélite orbitando todo o sistema */
+        .satellite-orbit {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 3;
+        }
+
+        /* Satélite com ícone */
+        .satellite {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            font-size: 10px;
+            color: rgb(126, 208, 247);
+            transform: translate(-50%, -50%);
+            animation: orbitSatellite 20s linear infinite;
+            z-index: 4;
+        }
+
+        /* Nova órbita maior para planetas menores */
+        .orbit-large {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 700px;
+            height: 700px;
+            border: 0.5px dashed #ffffff;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+        }
+
+        .planet-small {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            background-color: #e0e0e0;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 8px;
+            color: #000;
+        }
+
+        /* Animações para os planetas menores */
+        .small-planet {
+            animation: orbitSmall linear infinite;
+        }
+
+        @keyframes orbitSmall {
+            0% {
+                transform: rotate(0deg) translateX(350px) rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg) translateX(350px) rotate(-360deg);
+            }
+        }
+
+        /* Botão para alternar tema */
+        .toggle-theme {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 15px;
+            background-color: #fff;
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 20;
+        }
+
+        /* Estilos para o tema claro */
+        .light-theme {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .light-theme .black-hole {
+            background-color: #ccc;
+        }
+
+        .light-theme .planet-medium {
+            background-color: #f0f0f0;
+        }
+
+        .light-theme .planet-small {
+            background-color: #ddd;
+        }
+    </style>
+    <title>Sistema com Satélite e Foguetes</title>
+</head>
+
+<body>
+    <button class="toggle-theme">Alternar Tema</button>
+    <div class="container">
+        <!-- Buraco negro no centro -->
+        <div class="black-hole">Buraco Negro</div>
+
+        <!-- Órbita dos planetas médios -->
+        <div class="orbit-medium">
+            <!-- Planetas médios -->
+            <div class="planet-medium planet1">Terra
+                <div class="orbit-small">
+                    <div class="moon-small">Lua</div>
+                </div>
+            </div>
+            <div class="planet-medium planet2">Marte
+                <div class="orbit-small">
+                    <div class="moon-small">Fobos</div>
+                </div>
+            </div>
+            <div class="planet-medium planet3">Júpiter
+                <div class="orbit-small">
+                    <div class="moon-small">Europa</div>
+                </div>
+            </div>
+            <div class="planet-medium planet4">Saturno
+                <div class="orbit-small">
+                    <div class="moon-small">Titã</div>
+                </div>
+            </div>
+            <div class="planet-medium planet5">Netuno
+                <div class="orbit-small">
+                    <div class="moon-small">Tritão</div>
+                </div>
+            </div>
+
+            <!-- Foguetes saindo dos planetas -->
+            <div class="rocket rocket1">🚀</div>
+            <div class="rocket rocket2">🚀</div>
+        </div>
+
+        <!-- Nova órbita maior com planetas menores -->
+        <div class="orbit-large">
+            <div class="planet-small small-planet1 small-planet">Plutão</div>
+            <div class="planet-small small-planet2 small-planet">Ceres</div>
+            <div class="planet-small small-planet3 small-planet">Haumea</div>
+            <div class="planet-small small-planet4 small-planet">Makemake</div>
+            <div class="planet-small small-planet5 small-planet">Eris</div>
+            <div class="planet-small small-planet6 small-planet">Sedna</div>
+            <div class="planet-small small-planet7 small-planet">Sedna</div>
+            <div class="planet-small small-planet8 small-planet">Quaoar</div>
+        </div>
+
+        <!-- Satélite no sistema -->
+        <div class="satellite-orbit"></div>
+        <div class="satellite">🛰️</div>
+    </div>
+
+    <script>
+        const toggleButton = document.querySelector('.toggle-theme');
+        toggleButton.addEventListener('click', () => {
+            document.body.classList.toggle('light-theme');
+        });
+    </script>
+</body>
+
+</html>

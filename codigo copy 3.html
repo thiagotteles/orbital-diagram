@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #000; /* Cor do fundo, simulando o espaço */
+    }
+
+    .container {
+      position: relative;
+      width: 400px;
+      height: 400px;
+    }
+
+    /* Buraco negro (planeta grande no centro) */
+    .black-hole {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 80px;
+      height: 80px;
+      background-color: #111; /* Cor escura para o buraco negro */
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    /* Planetas médios orbitando o buraco negro */
+    .orbit-medium {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 300px;
+      height: 300px;
+      border: 2px dashed #61dafb;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .planet-medium {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 40px;
+      height: 40px;
+      background-color: #ff6f61;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    /* Animações para os planetas médios */
+    .planet1 {
+      animation: orbitMedium1 10s linear infinite;
+    }
+
+    .planet2 {
+      animation: orbitMedium2 12s linear infinite;
+    }
+
+    /* Luas orbitando os planetas médios */
+    .orbit-small {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 80px;
+      height: 80px;
+      border: 1px dashed #ccc;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .moon-small {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 15px;
+      height: 15px;
+      background-color: #aaa;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      animation: orbitMoon 4s linear infinite;
+    }
+
+    /* Animações para as órbitas dos planetas médios */
+    @keyframes orbitMedium1 {
+      0% {
+        transform: rotate(0deg) translateX(150px) rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg) translateX(150px) rotate(-360deg);
+      }
+    }
+
+    @keyframes orbitMedium2 {
+      0% {
+        transform: rotate(0deg) translateX(150px) rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg) translateX(150px) rotate(-360deg);
+      }
+    }
+
+    /* Animação para as luas orbitando os planetas médios */
+    @keyframes orbitMoon {
+      0% {
+        transform: rotate(0deg) translateX(40px) rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg) translateX(40px) rotate(-360deg);
+      }
+    }
+
+  </style>
+  <title>Sistema Planetário com Buraco Negro</title>
+</head>
+<body>
+  <div class="container">
+    <!-- Buraco negro no centro -->
+    <div class="black-hole"></div>
+
+    <!-- Órbita dos planetas médios -->
+    <div class="orbit-medium">
+      <!-- Planeta médio 1 -->
+      <div class="planet-medium planet1">
+        <!-- Órbita da lua em torno do planeta médio 1 -->
+        <div class="orbit-small">
+          <div class="moon-small"></div>
+        </div>
+      </div>
+
+      <!-- Planeta médio 2 -->
+      <div class="planet-medium planet2">
+        <!-- Órbita da lua em torno do planeta médio 2 -->
+        <div class="orbit-small">
+          <div class="moon-small"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
