@@ -4,17 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #1e1e1e;
+            background-color: #000;
             margin: 0;
-            font-family: 'Roboto', sans-serif;
-            color: #ffffff;
         }
 
         .container {
@@ -30,17 +28,15 @@
             left: 50%;
             width: 100px;
             height: 100px;
-            background-color: #222222;
+            background-color: #111;
             border-radius: 50%;
             transform: translate(-50%, -50%);
             z-index: 10;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: #ffffff;
-            font-size: 14px;
-            font-weight: bold;
-            box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 12px;
         }
 
         /* Órbita dos planetas médios */
@@ -50,7 +46,7 @@
             left: 50%;
             width: 300px;
             height: 300px;
-            border: 0.5px dashed #6c757d;
+            border: 0.5px dashed #ffffff;
             border-radius: 50%;
             transform: translate(-50%, -50%);
             z-index: 5;
@@ -60,9 +56,9 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 50px;
-            height: 50px;
-            background-color: #1d0d0d;
+            width: 40px;
+            height: 40px;
+            background-color: #ece3e2;
             border-radius: 50%;
             transform: translate(-50%, -50%);
             z-index: 8;
@@ -70,9 +66,7 @@
             justify-content: center;
             align-items: center;
             font-size: 12px;
-            font-weight: bold;
-            color: #fff;
-            box-shadow: 0 0 8px rgba(255, 107, 107, 1);
+            color: #000;
         }
 
         /* Órbita e lua de planetas médios */
@@ -82,7 +76,7 @@
             left: 50%;
             width: 80px;
             height: 80px;
-            border: 0.5px dashed #6c757d;
+            border: 1px dashed #ccc;
             border-radius: 50%;
             transform: translate(-50%, -50%);
         }
@@ -93,17 +87,11 @@
             left: 50%;
             width: 15px;
             height: 15px;
-            background-color: #adb5bd;
+            background-color: #aaa;
             border-radius: 50%;
             transform: translate(-50%, -50%);
             animation: orbitMoon 4s linear infinite;
             z-index: 6;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 3px;
-            color: #000;
-            box-shadow: 0 0 5px rgb(232, 234, 235);
         }
 
         /* Órbita maior para planetas pequenos */
@@ -113,7 +101,7 @@
             left: 50%;
             width: 700px;
             height: 700px;
-            border: 0.5px dashed #6c757d;
+            border: 0.5px dashed #ffffff;
             border-radius: 50%;
             transform: translate(-50%, -50%);
             z-index: 2;
@@ -123,18 +111,17 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 40px;
-            height: 40px;
-            background-color: #ffd93d;
+            width: 20px;
+            height: 20px;
+            background-color: #e0e0e0;
             border-radius: 50%;
             transform: translate(-50%, -50%);
             z-index: 7;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 7px;
+            font-size: 8px;
             color: #000;
-            box-shadow: 0 0 6px rgb(255, 241, 119);
         }
 
         /* Satélite */
@@ -146,7 +133,6 @@
             height: 500px;
             border-radius: 50%;
             transform: translate(-50%, -50%);
-            border: 0.5px dashed #669fd1;
             z-index: 3;
         }
 
@@ -208,7 +194,7 @@
 <body>
     <div class="container">
         <!-- Buraco negro no centro -->
-        <div class="black-hole">Cora - Crédito</div>
+        <div class="black-hole">Buraco Negro</div>
 
         <!-- Satélite no sistema -->
         <div class="satellite-orbit"></div>
@@ -216,63 +202,51 @@
     </div>
 
     <script>
-        // Array de planetas médios com até 3 luas
+        // Array de planetas médios com luas
         const planetasMedios = [
-            { nome: 'Meios de pagamento', luas: ['API', 'BFF', 'Worker'] },
-            { nome: 'Restrição', luas: ['API', 'BFF', 'Worker'] },
-            { nome: 'Limite', luas: ['API', 'BFF', 'Worker'] },
-            { nome: 'Solicitações', luas: ['API', 'BFF', 'Worker'] },
-            { nome: 'Risco', luas: ['API', 'BFF', 'Worker'] },
-            { nome: 'Títulos', luas: ['API', 'BFF', 'Worker'] },
+            { nome: 'Terra', lua: 'Lua', tempoOrbita: 10 },
+            { nome: 'Marte', lua: 'Fobos', tempoOrbita: 12 },
+            { nome: 'Júpiter', lua: 'Europa', tempoOrbita: 14 },
+            { nome: 'Saturno', lua: 'Titã', tempoOrbita: 16 },
+            { nome: 'Netuno', lua: 'Tritão', tempoOrbita: 18 }
         ];
 
         // Array de planetas pequenos
         const planetasPequenos = [
-            { nome: 'Integrador Clientes' },
-            { nome: 'Integrdor Payments' },
-            { nome: 'Integrdor Promax' },
-            { nome: 'Integrdor Promax titulos' },
-            { nome: 'Integrdor Thoth' },
-            { nome: 'Integrdor Mesh' },
-            { nome: 'Integrdor Iris' },
-            { nome: 'Integrdor Serasa' },
-            { nome: 'Integrdor Bees' },
-            { nome: 'Integrdor Cobrança' },
-            { nome: 'Integrdor Pedidos' }
+            { nome: 'Plutão', tempoOrbita: 30 },
+            { nome: 'Ceres', tempoOrbita: 32 },
+            { nome: 'Ceres', tempoOrbita: 35 },
+            { nome: 'Ceres', tempoOrbita: 38 },
+            { nome: 'Ceres', tempoOrbita: 40 },
+            { nome: 'Ceres', tempoOrbita: 42 },
+            { nome: 'Ceres', tempoOrbita: 45 },
+            { nome: 'Ceres', tempoOrbita: 46 },
+            { nome: 'Ceres', tempoOrbita: 47 },
         ];
 
         const container = document.querySelector('.container');
 
-        // Função para criar planetas médios dinamicamente com várias luas
+        // Função para criar planetas médios dinamicamente
         planetasMedios.forEach((planeta, index) => {
             const planetMedium = document.createElement('div');
             planetMedium.classList.add('planet-medium');
             planetMedium.textContent = planeta.nome;
 
-            // Adicionando órbitas e luas
-            planeta.luas.forEach((lua, luaIndex) => {
-                const orbitSmall = document.createElement('div');
-                orbitSmall.classList.add('orbit-small');
+            // Adicionando órbita e lua
+            const orbitSmall = document.createElement('div');
+            orbitSmall.classList.add('orbit-small');
 
-                const moonSmall = document.createElement('div');
-                moonSmall.classList.add('moon-small');
-                moonSmall.textContent = lua;
+            const moonSmall = document.createElement('div');
+            moonSmall.classList.add('moon-small');
+            moonSmall.textContent = planeta.lua;
 
-                orbitSmall.appendChild(moonSmall);
-                planetMedium.appendChild(orbitSmall);
-
-                // Adiciona delay nas luas para que não comecem no mesmo ponto
-                moonSmall.style.animationDelay = `${luaIndex * 1.5}s`;
-            });
+            orbitSmall.appendChild(moonSmall);
+            planetMedium.appendChild(orbitSmall);
 
             // Estilos de animação
-            planetMedium.style.animation = `orbitPlanetMedium 40s linear infinite`;
-            planetMedium.style.animationDelay = `${(index / planetasMedios.length) * -40}s`; // Delays para separação
+            planetMedium.style.animation = `orbitPlanetMedium ${planeta.tempoOrbita}s linear infinite`;
 
-            const orbitMedium = document.createElement('div');
-            orbitMedium.classList.add('orbit-medium');
-            orbitMedium.appendChild(planetMedium);
-            container.appendChild(orbitMedium);
+            container.appendChild(planetMedium);
         });
 
         // Função para criar planetas pequenos dinamicamente
@@ -285,8 +259,7 @@
             planetSmall.textContent = planeta.nome;
 
             // Estilos de animação
-            planetSmall.style.animation = `orbitPlanetSmall 40s linear infinite`;
-            planetSmall.style.animationDelay = `${(index / planetasPequenos.length) * -40}s`; // Delays para separação
+            planetSmall.style.animation = `orbitPlanetSmall ${planeta.tempoOrbita}s linear infinite`;
 
             orbitLarge.appendChild(planetSmall);
         });

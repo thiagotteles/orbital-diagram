@@ -21,6 +21,7 @@
             position: relative;
             width: 600px;
             height: 600px;
+            
         }
 
         /* Buraco negro */
@@ -269,10 +270,7 @@
             planetMedium.style.animation = `orbitPlanetMedium 40s linear infinite`;
             planetMedium.style.animationDelay = `${(index / planetasMedios.length) * -40}s`; // Delays para separação
 
-            const orbitMedium = document.createElement('div');
-            orbitMedium.classList.add('orbit-medium');
-            orbitMedium.appendChild(planetMedium);
-            container.appendChild(orbitMedium);
+            container.appendChild(planetMedium);
         });
 
         // Função para criar planetas pequenos dinamicamente
