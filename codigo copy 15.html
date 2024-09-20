@@ -11,7 +11,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #1e1e1e;
+            background-color: #f2f3f5;
             margin: 0;
             font-family: 'Roboto', sans-serif;
             color: #ffffff;
@@ -21,7 +21,6 @@
             position: relative;
             width: 600px;
             height: 600px;
-            
         }
 
         /* Buraco negro */
@@ -38,6 +37,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            text-align:center;
             color: #ffffff;
             font-size: 14px;
             font-weight: bold;
@@ -51,7 +51,7 @@
             left: 50%;
             width: 300px;
             height: 300px;
-            border: 0.5px dashed #6c757d;
+            border: 0.5px dashed #a3a3a3;
             border-radius: 50%;
             transform: translate(-50%, -50%);
             z-index: 5;
@@ -63,14 +63,15 @@
             left: 50%;
             width: 50px;
             height: 50px;
-            background-color: #1d0d0d;
+            background-color: #000000;
             border-radius: 50%;
             transform: translate(-50%, -50%);
-            z-index: 8;
+            z-index: -99;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 12px;
+            text-align:center;
+            font-size: 10px;
             font-weight: bold;
             color: #fff;
             box-shadow: 0 0 8px rgba(255, 107, 107, 1);
@@ -83,7 +84,7 @@
             left: 50%;
             width: 80px;
             height: 80px;
-            border: 0.5px dashed #6c757d;
+            border: 0.5px dashed #a3a3a3;
             border-radius: 50%;
             transform: translate(-50%, -50%);
         }
@@ -102,6 +103,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            text-align:center;
             font-size: 3px;
             color: #000;
             box-shadow: 0 0 5px rgb(232, 234, 235);
@@ -114,7 +116,7 @@
             left: 50%;
             width: 700px;
             height: 700px;
-            border: 0.5px dashed #6c757d;
+            border: 0.5px dashed #a3a3a3;
             border-radius: 50%;
             transform: translate(-50%, -50%);
             z-index: 2;
@@ -126,16 +128,17 @@
             left: 50%;
             width: 40px;
             height: 40px;
-            background-color: #ffd93d;
+            background-color: #f2f3f5;
             border-radius: 50%;
             transform: translate(-50%, -50%);
             z-index: 7;
             display: flex;
             justify-content: center;
             align-items: center;
+            text-align:center;
             font-size: 7px;
             color: #000;
-            box-shadow: 0 0 6px rgb(255, 241, 119);
+            box-shadow: 0 0 6px rgb(17, 17, 17);
         }
 
         /* Satélite */
@@ -270,7 +273,10 @@
             planetMedium.style.animation = `orbitPlanetMedium 40s linear infinite`;
             planetMedium.style.animationDelay = `${(index / planetasMedios.length) * -40}s`; // Delays para separação
 
-            container.appendChild(planetMedium);
+            const orbitMedium = document.createElement('div');
+            orbitMedium.classList.add('orbit-medium');
+            orbitMedium.appendChild(planetMedium);
+            container.appendChild(orbitMedium);
         });
 
         // Função para criar planetas pequenos dinamicamente
