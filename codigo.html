@@ -140,13 +140,44 @@
             box-shadow: 0 0 6px rgb(17, 17, 17);
         }
 
-        /* Satélite */
-        .satellite-orbit {
+        .planet-front {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 40px;
+            height: 40px;
+            background-color: #ff80df;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 7px;
+            color: #000;
+            box-shadow: 0 0 6px rgb(17, 17, 17);
+        }
+
+        .front-orbit {
             position: absolute;
             top: 50%;
             left: 50%;
             width: 500px;
             height: 500px;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            border: 0.5px dashed #ff80df;
+            z-index: 3;
+        }
+
+        /* Satélite */
+        .satellite-orbit {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 900px;
+            height: 900px;
             border-radius: 50%;
             transform: translate(-50%, -50%);
             border: 0.5px dashed #669fd1;
@@ -195,13 +226,23 @@
             }
         }
 
-        @keyframes orbitSatellite {
+        @keyframes orbitPlanetFront {
             0% {
-                transform: rotate(360deg) translateX(250px) rotate(360deg);
+                transform: rotate(0deg) translateX(250px) rotate(0deg);
             }
 
             100% {
-                transform: rotate(0deg) translateX(250px) rotate(0deg);
+                transform: rotate(360deg) translateX(250px) rotate(-360deg);
+            }
+        }
+
+        @keyframes orbitSatellite {
+            0% {
+                transform: rotate(360deg) translateX(450px) rotate(360deg);
+            }
+
+            100% {
+                transform: rotate(0deg) translateX(450px) rotate(0deg);
             }
         }
     </style>
@@ -211,7 +252,7 @@
 <body>
     <div class="container">
         <!-- Buraco negro no centro -->
-        <div class="black-hole">Cora - Crédito</div>
+        <div class="black-hole">Nome Sistema</div>
 
         <!-- Satélite no sistema -->
         <div class="satellite-orbit"></div>
@@ -220,26 +261,31 @@
 
     <script>
         const planetasMedios = [
-            { nome: 'Meios de pagamento', luas: ['API', 'BFF', 'Worker'] },
-            { nome: 'Restrição', luas: ['API', 'BFF', 'Worker'] },
-            { nome: 'Limite', luas: ['API', 'BFF', 'Worker'] },
-            { nome: 'Solicitações', luas: ['API', 'BFF', 'Worker'] },
-            { nome: 'Risco', luas: ['API', 'BFF', 'Worker'] },
-            { nome: 'Títulos', luas: ['API', 'BFF', 'Worker'] },
+            { nome: 'Planeta Core 1', luas: ['API', 'BFF', 'Worker'] },
+            { nome: 'Planeta Core 2', luas: ['API', 'BFF', 'Worker'] },
+            { nome: 'Planeta Core 3', luas: ['API', 'BFF', 'Worker'] },
+            { nome: 'Planeta Core 4', luas: ['API', 'BFF', 'Worker'] },
+            { nome: 'Planeta Core 5', luas: ['API', 'BFF', 'Worker'] },
+            { nome: 'Planeta Core 6', luas: ['API', 'BFF', 'Worker'] },
         ];
 
         const planetasPequenos = [
-            { nome: 'Integrador Clientes' },
-            { nome: 'Integrador Payments' },
-            { nome: 'Integrador Promax' },
-            { nome: 'Integrador Promax Títulos' },
-            { nome: 'Integrador Thoth' },
-            { nome: 'Integrador Mesh' },
-            { nome: 'Integrador Iris' },
-            { nome: 'Integrador Serasa' },
-            { nome: 'Integrador Bees' },
-            { nome: 'Integrador Cobrança' },
-            { nome: 'Integrador Pedidos' }
+            { nome: 'Planeta Integrador 1' },
+            { nome: 'Planeta Integrador 2' },
+            { nome: 'Planeta Integrador 3' },
+            { nome: 'Planeta Integrador 4' },
+            { nome: 'Planeta Integrador 5' },
+            { nome: 'Planeta Integrador 6' },
+            { nome: 'Planeta Integrador 7' },
+            { nome: 'Planeta Integrador 8' },
+            { nome: 'Planeta Integrador 9' },
+            { nome: 'Planeta Integrador 10' },
+            { nome: 'Planeta Integrador 11' }
+        ];
+
+        const planetasFront = [
+            { nome: 'Planeta' },
+            { nome: 'Planeta' }
         ];
 
         const container = document.querySelector('.container');
@@ -290,13 +336,32 @@
             planetSmall.textContent = planeta.nome;
 
             // Estilos de animação dos planetas pequenos
-            planetSmall.style.animation = `orbitPlanetSmall 40s linear infinite`;
-            planetSmall.style.animationDelay = `${(index / planetasPequenos.length) * -40}s`;
+            planetSmall.style.animation = `orbitPlanetSmall 20s linear infinite`;
+            planetSmall.style.animationDelay = `${(index / planetasPequenos.length) * -20}s`;
 
             orbitLarge.appendChild(planetSmall);
         });
 
         container.appendChild(orbitLarge);
+
+        const orbitfront = document.createElement('div');
+        orbitfront.classList.add('front-orbit');
+        
+        planetasFront.forEach((planeta, index) => {
+            const planetFront = document.createElement('div');
+            planetFront.classList.add('planet-front');
+            planetFront.textContent = planeta.nome;
+
+            // Estilos de animação dos planetas pequenos
+            planetFront.style.animation = `orbitPlanetFront 25s linear infinite`;
+            planetFront.style.animationDelay = `${(index / planetasFront.length) * -25}s`;
+
+            orbitfront.appendChild(planetFront);
+        });
+
+        container.appendChild(orbitfront);
+
+        
     </script>
 </body>
 
