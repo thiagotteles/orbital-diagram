@@ -44,7 +44,7 @@
             box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.1);
         }
 
-        /* Órbita dos planetas médios */
+        /* Órbita compartilhada dos planetas médios */
         .orbit-medium {
             position: absolute;
             top: 50%;
@@ -77,7 +77,7 @@
             box-shadow: 0 0 8px rgba(255, 107, 107, 1);
         }
 
-        /* Órbita e lua de planetas médios */
+        /* Órbita compartilhada das luas ao redor dos planetas */
         .orbit-small {
             position: absolute;
             top: 50%;
@@ -98,7 +98,6 @@
             background-color: #adb5bd;
             border-radius: 50%;
             transform: translate(-50%, -50%);
-            animation: orbitMoon 4s linear infinite;
             z-index: 6;
             display: flex;
             justify-content: center;
@@ -109,7 +108,7 @@
             box-shadow: 0 0 5px rgb(232, 234, 235);
         }
 
-        /* Órbita maior para planetas pequenos */
+        /* Órbita maior compartilhada para planetas pequenos */
         .orbit-large {
             position: absolute;
             top: 50%;
@@ -198,11 +197,11 @@
 
         @keyframes orbitSatellite {
             0% {
-                transform: rotate(0deg) translateX(250px) rotate(0deg);
+                transform: rotate(360deg) translateX(250px) rotate(360deg);
             }
 
             100% {
-                transform: rotate(360deg) translateX(250px) rotate(-360deg);
+                transform: rotate(0deg) translateX(250px) rotate(0deg);
             }
         }
     </style>
@@ -212,70 +211,74 @@
 <body>
     <div class="container">
         <!-- Buraco negro no centro -->
-        <div class="black-hole">Nome Sistema</div>
+        <div class="black-hole">Cora - Crédito</div>
 
         <!-- Satélite no sistema -->
         <div class="satellite-orbit"></div>
         <div class="satellite">🛰️</div>
-
-        <!-- Órbita dos planetas médios (única) -->
-        <div class="orbit-medium"></div>
     </div>
 
     <script>
-        // Array de planetas médios com até 3 luas
         const planetasMedios = [
-            { nome: 'Core 1', luas: ['API', 'BFF', 'Worker'] },
-            { nome: 'Core 2', luas: ['API', 'BFF', 'Worker'] },
-            { nome: 'Core 3', luas: ['API', 'BFF', 'Worker'] },
-            { nome: 'Core 4', luas: ['API', 'BFF', 'Worker'] },
-            { nome: 'Core 5', luas: ['API', 'BFF', 'Worker'] },
-            { nome: 'Core 6', luas: ['API', 'BFF', 'Worker'] },
+            { nome: 'Meios de pagamento', luas: ['API', 'BFF', 'Worker'] },
+            { nome: 'Restrição', luas: ['API', 'BFF', 'Worker'] },
+            { nome: 'Limite', luas: ['API', 'BFF', 'Worker'] },
+            { nome: 'Solicitações', luas: ['API', 'BFF', 'Worker'] },
+            { nome: 'Risco', luas: ['API', 'BFF', 'Worker'] },
+            { nome: 'Títulos', luas: ['API', 'BFF', 'Worker'] },
         ];
 
-        // Array de planetas pequenos
         const planetasPequenos = [
-            { nome: 'Integrador A' },
-            { nome: 'Integrador B' },
-            { nome: 'Integrador C' },
-            { nome: 'Integrador D' },
-            { nome: 'Integrador E' },
-            { nome: 'Integrador F' },
-            { nome: 'Integrador G' },
-            { nome: 'Integrador H' },
-            { nome: 'Integrador I' },
-            { nome: 'Integrador J' },
-            { nome: 'Integrador K' }
+            { nome: 'Integrador Clientes' },
+            { nome: 'Integrador Payments' },
+            { nome: 'Integrador Promax' },
+            { nome: 'Integrador Promax Títulos' },
+            { nome: 'Integrador Thoth' },
+            { nome: 'Integrador Mesh' },
+            { nome: 'Integrador Iris' },
+            { nome: 'Integrador Serasa' },
+            { nome: 'Integrador Bees' },
+            { nome: 'Integrador Cobrança' },
+            { nome: 'Integrador Pedidos' }
         ];
 
         const container = document.querySelector('.container');
-        const orbitMedium = document.querySelector('.orbit-medium');
 
-        // Função para criar planetas médios dinamicamente com várias luas (em uma única órbita)
+        // Órbita compartilhada dos planetas médios
+        const orbitMedium = document.createElement('div');
+        orbitMedium.classList.add('orbit-medium');
+
         planetasMedios.forEach((planeta, index) => {
             const planetMedium = document.createElement('div');
             planetMedium.classList.add('planet-medium');
             planetMedium.textContent = planeta.nome;
 
-            // Adicionando luas
-            planeta.luas.forEach((lua) => {
-                const orbitSmall = document.createElement('div');
-                orbitSmall.classList.add('orbit-small');
+            // Adicionando órbita compartilhada para as luas
+            const orbitSmall = document.createElement('div');
+            orbitSmall.classList.add('orbit-small');
 
+            planeta.luas.forEach((lua, luaIndex) => {
                 const moonSmall = document.createElement('div');
                 moonSmall.classList.add('moon-small');
                 moonSmall.textContent = lua;
 
                 orbitSmall.appendChild(moonSmall);
-                planetMedium.appendChild(orbitSmall);
+
+                // Animação e delay para cada lua
+                moonSmall.style.animation = `orbitMoon 4s linear infinite`;
+                moonSmall.style.animationDelay = `${(luaIndex / planeta.luas.length) * -4}s`;
             });
 
-            // Estilos de animação
+            planetMedium.appendChild(orbitSmall);
+
+            // Estilos de animação dos planetas
             planetMedium.style.animation = `orbitPlanetMedium 40s linear infinite`;
-            planetMedium.style.animationDelay = `${(index / planetasMedios.length) * -40}s`; // Delays para separação
+            planetMedium.style.animationDelay = `${(index / planetasMedios.length) * -40}s`;
 
             orbitMedium.appendChild(planetMedium);
         });
+
+        container.appendChild(orbitMedium);
 
         // Função para criar planetas pequenos dinamicamente
         const orbitLarge = document.createElement('div');
@@ -286,9 +289,9 @@
             planetSmall.classList.add('planet-small');
             planetSmall.textContent = planeta.nome;
 
-            // Estilos de animação
+            // Estilos de animação dos planetas pequenos
             planetSmall.style.animation = `orbitPlanetSmall 40s linear infinite`;
-            planetSmall.style.animationDelay = `${(index / planetasPequenos.length) * -40}s`; // Delays para separação
+            planetSmall.style.animationDelay = `${(index / planetasPequenos.length) * -40}s`;
 
             orbitLarge.appendChild(planetSmall);
         });
