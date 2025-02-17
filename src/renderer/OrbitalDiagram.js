@@ -312,6 +312,15 @@ export class OrbitalDiagram {
           `;
         }
 
+        // Add click hint for external systems
+        if (node.type === 'external') {
+          tooltipContent += `
+            <div style="margin-top: 10px; color: #ffd700;">
+              Click to view system details
+            </div>
+          `;
+        }
+
         this.tooltip
           .style('visibility', 'visible')
           .html(tooltipContent);
@@ -347,6 +356,37 @@ export class OrbitalDiagram {
         group.transition()
           .duration(300)
           .attr('transform', `translate(${x},${y}) scale(1)`);
+      })
+      .on('click', () => {
+        // Handle click for external systems
+        if (node.type === 'external') {
+          const systemId = node.id;
+          console.log('Clicking external system:', systemId);
+          
+          // Get all tabs
+          const tabs = document.querySelectorAll('.tab');
+          console.log('Available tabs:', Array.from(tabs).map(t => t.getAttribute('data-id')));
+          
+          // First try to find tab by id
+          for (let i = 0; i < tabs.length; i++) {
+            const tab = tabs[i];
+            if (tab.getAttribute('data-id') === systemId) {
+              console.log('Found matching tab by id, clicking...');
+              tab.click();
+              break;
+            }
+          }
+          
+          // If no tab found, try to open the corresponding .orbit file
+          const orbitFile = `${systemId}.orbit`;
+          console.log('Looking for orbit file:', orbitFile);
+          
+          // Dispatch custom event to notify parent about orbit file click
+          const event = new CustomEvent('orbitFileClick', {
+            detail: { filename: orbitFile }
+          });
+          document.dispatchEvent(event);
+        }
       });
 
     if (node.type === 'entity') {
@@ -767,7 +807,9 @@ export class OrbitalDiagram {
       });
     });
 
-    this.drawNode(this.config.center, 0, 0);
+    if (this.config.center) {
+      this.drawNode(this.config.center, 0, 0);
+    }
 
     if (this.config.external) {
       this.config.external.forEach(system => {

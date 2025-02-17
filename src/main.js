@@ -8,6 +8,7 @@ class DiagramManager {
     // Setup event listeners
     this.setupFileInput();
     this.setupTabClickHandlers();
+    this.setupOrbitFileClickHandler();
 
     // Load all .orbit files from uploads directory
     this.loadOrbitFiles();
@@ -50,6 +51,7 @@ class DiagramManager {
     tab.className = 'tab';
     tab.textContent = name;
     tab.dataset.index = index;
+    tab.dataset.id = name; // Add data-id attribute for matching with external system IDs
     document.getElementById('tabs').appendChild(tab);
     
     // Remove existing content if it exists
@@ -129,6 +131,40 @@ class DiagramManager {
           }
         }
       }
+    });
+  }
+
+  setupOrbitFileClickHandler() {
+    document.addEventListener('orbitFileClick', (event) => {
+      const filename = event.detail.filename;
+      console.log('Opening orbit file:', filename);
+      
+      // Find tab with matching filename
+      const tabs = document.querySelectorAll('.tab');
+      for (let i = 0; i < tabs.length; i++) {
+        const tab = tabs[i];
+        if (tab.textContent === filename.replace('.orbit', '')) {
+          this.activateTab(tab.dataset.index);
+          return;
+        }
+      }
+
+      // If tab not found, load the file
+      fetch(`/uploads/${filename}`)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`Failed to load ${filename}`);
+          }
+          return response.json();
+        })
+        .then(config => {
+          const name = filename.replace('.orbit', '');
+          const index = this.addDiagram(name, config);
+          this.activateTab(index);
+        })
+        .catch(error => {
+          console.error('Error loading orbit file:', error);
+        });
     });
   }
 

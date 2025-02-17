@@ -81,8 +81,8 @@
   ],
   "external": [
     {
-      "id": "ext1",
-      "name": "Operations",
+      "id": "orders",
+      "name": "Orders",
       "type": "external",
       "entities": [
         {
@@ -104,7 +104,7 @@
       ]
     },
     {
-      "id": "ext2",
+      "id": "content",
       "name": "Content",
       "type": "external",
       "entities": [
