@@ -1,11 +1,11 @@
-export default {
+import { defineConfig } from 'vite';
+
+export default defineConfig({
   server: {
-    port: 3000,
-    open: true
-  },
-  build: {
-    outDir: 'dist',
-    sourcemap: true
-  },
-  publicDir: 'public'
-}
+    port: 5173,
+    proxy: {
+      '/api': 'http://localhost:3000',
+      '/uploads': 'http://localhost:3000'
+    }
+  }
+});

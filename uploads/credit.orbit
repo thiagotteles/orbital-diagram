@@ -1,0 +1,205 @@
+{
+  "center": {
+    "name": "Product\nName",
+    "type": "product"
+  },
+  "core": [
+    {
+      "id": "core1",
+      "name": "Analytics\nCore",
+      "type": "core",
+      "features": [
+        { "name": "API", "type": "feature" },
+        { "name": "Worker", "type": "feature" },
+        { "name": "JOB", "type": "feature" }
+      ]
+    },
+    {
+      "id": "core2",
+      "name": "User\nCore",
+      "type": "core",
+      "features": [
+        { "name": "API", "type": "feature" },
+        { "name": "Worker", "type": "feature" }
+      ]
+    },
+    {
+      "id": "core3",
+      "name": "Content\nCore",
+      "type": "core",
+      "features": [
+        { "name": "API", "type": "feature" }
+      ]
+    }
+  ],
+  "frontend": [
+    {
+      "id": "frontend1",
+      "name": "Admin\nPortal",
+      "type": "frontend",
+      "connections": ["core1"]
+    },
+    {
+      "id": "frontend2",
+      "name": "User\nPortal",
+      "type": "frontend"
+    }
+  ],
+  "entity": [
+    {
+      "id": "entity1",
+      "name": "User Entity",
+      "type": "entity",
+      "connections": ["acl1"]
+    },
+    {
+      "id": "entity2",
+      "name": "Content Entity",
+      "type": "entity",
+      "connections": ["acl2"]
+    },
+    {
+      "id": "entity3",
+      "name": "Analytics Entity",
+      "type": "entity",
+      "connections": ["core1"]
+    }
+  ],
+  "acl": [
+    {
+      "id": "acl1",
+      "name": "User ACL",
+      "type": "acl",
+      "connections": ["ext1", "ext2", "core2"]
+    },
+    {
+      "id": "acl2",
+      "name": "Content ACL",
+      "type": "acl",
+      "connections": ["ext3", "ext4"]
+    }
+  ],
+  "external": [
+    {
+      "id": "ext1",
+      "name": "Operations",
+      "type": "external",
+      "entities": [
+        {
+          "id": "ext1_entity1",
+          "name": "Monitoring",
+          "type": "entity",
+          "connections": ["core1"]
+        },
+        {
+          "id": "ext1_entity2",
+          "name": "Deployment",
+          "type": "entity"
+        },
+        {
+          "id": "ext1_entity3",
+          "name": "Logging",
+          "type": "entity"
+        }
+      ]
+    },
+    {
+      "id": "ext2",
+      "name": "Content",
+      "type": "external",
+      "entities": [
+        {
+          "id": "ext2_entity1",
+          "name": "Article",
+          "type": "entity"
+        },
+        {
+          "id": "ext2_entity2",
+          "name": "Media",
+          "type": "entity"
+        },
+        {
+          "id": "ext2_entity3",
+          "name": "Category",
+          "type": "entity"
+        }
+      ]
+    },
+    {
+      "id": "ext3",
+      "name": "Content\nProviders",
+      "type": "external",
+      "entities": [
+        {
+          "id": "ext3_entity1",
+          "name": "Provider API",
+          "type": "entity"
+        },
+        {
+          "id": "ext3_entity2",
+          "name": "Content Feed",
+          "type": "entity"
+        }
+      ]
+    },
+    {
+      "id": "ext4",
+      "name": "Partnership\nIntegration",
+      "type": "external"
+    },
+    {
+      "id": "ext5",
+      "name": "Localization",
+      "type": "external"
+    },
+    {
+      "id": "ext6",
+      "name": "Legal and\nCompliance",
+      "type": "external"
+    }
+  ],
+  "styles": {
+    "product": {
+      "color": "#000000",
+      "borderColor": "#000000",
+      "fontSize": "16px",
+      "textColor": "#FFFFFF"
+    },
+    "core": {
+      "color": "#515151",
+      "borderColor": "#515151",
+      "fontSize": "14px",
+      "textColor": "#FFFFFF"
+    },
+    "frontend": {
+      "color": "#2D9BF0",
+      "borderColor": "#2D9BF0",
+      "fontSize": "14px",
+      "textColor": "#FFFFFF"
+    },
+    "entity": {
+      "color": "#FFFFFF",
+      "borderColor": "#0CA789",
+      "fontSize": "13px",
+      "textColor": "#000000"
+    },
+    "acl": {
+      "color": "#7d53b9",
+      "borderColor": "#7d53b9",
+      "fontSize": "14px",
+      "textColor": "#FFFFFF"
+    },
+    "external": {
+      "color": "#FFB900",
+      "borderColor": "#000000",
+      "fontSize": "14px",
+      "textColor": "#000000"
+    },
+    "feature": {
+      "color": "#bbbbbb",
+      "borderColor": "#bbbbbb",
+      "fontSize": "11px",
+      "textColor": "#666666"
+    }
+  }
+}

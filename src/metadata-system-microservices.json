@@ -1,0 +1,100 @@
+{
+  "name": "Microservices Architecture",
+  "description": "Example of a microservices-based system",
+  "styles": {
+    "product": {
+      "color": "#2c3e50",
+      "borderColor": "#34495e",
+      "textColor": "#ffffff",
+      "fontSize": "16px"
+    },
+    "core": {
+      "color": "#e74c3c",
+      "borderColor": "#c0392b",
+      "textColor": "#ffffff",
+      "fontSize": "14px"
+    },
+    "frontend": {
+      "color": "#3498db",
+      "borderColor": "#2980b9",
+      "textColor": "#ffffff",
+      "fontSize": "12px"
+    },
+    "entity": {
+      "color": "#2ecc71",
+      "borderColor": "#27ae60",
+      "textColor": "#ffffff",
+      "fontSize": "12px"
+    },
+    "acl": {
+      "color": "#9b59b6",
+      "borderColor": "#8e44ad",
+      "textColor": "#ffffff",
+      "fontSize": "12px"
+    },
+    "external": {
+      "color": "#f1c40f",
+      "borderColor": "#f39c12",
+      "textColor": "#2c3e50",
+      "fontSize": "14px"
+    },
+    "feature": {
+      "color": "#1abc9c",
+      "borderColor": "#16a085",
+      "textColor": "#ffffff",
+      "fontSize": "10px"
+    }
+  },
+  "center": {
+    "id": "api-gateway",
+    "type": "product",
+    "name": "API Gateway",
+    "description": "Main entry point for all client requests"
+  },
+  "core": [
+    {
+      "id": "auth-service",
+      "type": "core",
+      "name": "Auth Service",
+      "description": "Authentication service",
+      "connections": ["auth-db"]
+    },
+    {
+      "id": "user-service",
+      "type": "core",
+      "name": "User Service",
+      "description": "User management service",
+      "connections": ["user-db", "message-queue"]
+    }
+  ],
+  "entity": [
+    {
+      "id": "user-db",
+      "type": "entity",
+      "name": "User Database",
+      "description": "User data storage"
+    },
+    {
+      "id": "auth-db",
+      "type": "entity",
+      "name": "Auth Database",
+      "description": "Authentication data storage"
+    }
+  ],
+  "external": [
+    {
+      "id": "message-queue",
+      "type": "external",
+      "name": "Message Queue",
+      "description": "Message broker",
+      "entities": [
+        {
+          "id": "notification",
+          "type": "entity",
+          "name": "Notification\nService",
+          "description": "Notification handling"
+        }
+      ]
+    }
+  ]
+}
